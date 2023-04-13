@@ -1,0 +1,36 @@
+.hero-section .hero-container {
+	padding-left: calc((100% - 1200px)/2);
+}
+
+.hero-section .hero-content {
+max-width: 471px;
+width: 100%;
+}
+
+.hero-section .hero-image {
+	max-width: 751px;
+}
+
+.hero-section .hero-image:before {
+	@apply bg-light_blue block absolute;
+
+	content: '';
+	width: 129px;
+	height: 129px;
+	z-index: -1;
+	border-radius: 50%;
+	left: -8%;
+	top: 0;
+}
+
+.hero-section .hero-image:after {
+	@apply bg-milk block absolute;
+
+	content: '';
+	width: 178px;
+	height: 178px;
+	z-index: -1;
+	border-bottom-right-radius: 50%;
+	right: 50%;
+	bottom: -10%;
+}

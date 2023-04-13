@@ -24,6 +24,9 @@ module.exports = {
 			},
 			colors: {
 				dark: '#000000',
+				blue: '#2639ED',
+				milk:'#FFF5DB',
+				light_blue:'#DAE9FF',
 			},
 		},
 		fontFamily: {

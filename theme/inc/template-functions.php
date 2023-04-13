@@ -280,3 +280,73 @@ function show_custom_logo( $size = 'medium' ) {
 	$html       = sprintf( '<a href="%1$s" class="custom-logo-link w-full" rel="home" title="%2$s" itemscope>%3$s</a>', esc_url( home_url( '/' ) ), get_bloginfo( 'name' ), $logo_image );
 	echo apply_filters( 'get_custom_logo', $html );
 }
+
+/**
+ * ACF Gutenberg blocks
+ */
+function register_custom_acf_blocks()
+{
+
+	// Check function exists.
+	if (function_exists('acf_register_block_type')) {
+
+		// See icons here - https://developer.wordpress.org/resource/dashicons
+		$blocks = [
+				[
+						'name' => 'hero',
+						'title' => __('Hero block', 'default'),
+						'icon' => 'screenoptions',
+				],
+		];
+
+		foreach ($blocks as $block) {
+			$block_args = array(
+					'render_template' => "parts/blocks/{$block['name']}.php",
+					'category' => 'design',
+					'mode' => 'auto',
+					'align' => 'full',
+					'enqueue_assets' => function () {
+						if (is_admin()) {
+							wp_enqueue_style('fw-gutenberg-editor-style');
+						}
+					},
+			);
+			$block_args = wp_parse_args($block, $block_args);
+
+			acf_register_block_type($block_args);
+		}
+	}
+}
+
+add_action('acf/init', 'register_custom_acf_blocks');
+
+
+/**
+ * Output background image style
+ *
+ * @param array|string $img Image array or url
+ * @param string $size Image size to retrieve
+ * @param bool $echo Whether to output the the style tag or return it.
+ *
+ * @return string|void String when retrieving.
+ */
+function bg( $img = '', $size = '', $echo = true ) {
+
+	if ( empty( $img ) ) {
+		return false;
+	}
+
+	if ( is_array( $img ) ) {
+		$url = $size ? $img['sizes'][ $size ] : $img['url'];
+	} else {
+		$url = $img;
+	}
+
+	$string = 'style="background-image: url(' . $url . ')"';
+
+	if ( $echo ) {
+		echo $string;
+	} else {
+		return $string;
+	}
+}

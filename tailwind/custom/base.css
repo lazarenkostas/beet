@@ -12,9 +12,22 @@
  * editor.
 */
 body {
-	@apply bg-background text-foreground font-roboto;
+	@apply bg-background text-black font-roboto;
 }
-
 .container {
 	@apply max-w-[1226px] mx-auto px-[15px];
+}
+
+h2 {
+	@apply text-[40px] font-roboto font-bold;
+}
+
+.custom-button {
+	@apply px-[40px] py-[20px] bg-blue rounded-[60px] inline-block capitalize text-white;
+
+	transition: 0.4s;
+}
+
+.custom-button:hover {
+	@apply bg-milk text-blue;
 }
