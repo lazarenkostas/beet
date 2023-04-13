@@ -9,39 +9,26 @@
 
 ?>
 
-<header id="masthead">
+<header id="masthead" class="py-[42px]">
+	<div class="container flex justify-between items-center">
+		<div class="logo w-2/12">
+			<h1 class="custom-logo max-w-[118px]"><?php show_custom_logo(); ?><span class="css-clip hidden"><?php echo get_bloginfo('name'); ?></span></h1>
+		</div>
 
-	<div>
-		<?php
-		if ( is_front_page() ) :
-			?>
-			<h1><?php bloginfo( 'name' ); ?></h1>
-			<?php
-		else :
-			?>
-			<p><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-		endif;
 
-		$beet_description = get_bloginfo( 'description', 'display' );
-		if ( $beet_description || is_customize_preview() ) :
-			?>
-			<p><?php echo $beet_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-		<?php endif; ?>
-	</div>
-
-	<nav id="site-navigation" aria-label="<?php esc_attr_e( 'Main Navigation', 'beet' ); ?>">
-		<button aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'beet' ); ?></button>
-
+	<nav class ="w-6/12 flex justify-between" id="site-navigation" aria-label="<?php esc_attr_e( 'Main Navigation', 'beet' ); ?>">
+		<button class="block lg:hidden" aria-controls="primary-menu" aria-expanded="false"><span class="menu-mobile"></span></button>
 		<?php
 		wp_nav_menu(
 			array(
 				'theme_location' => 'menu-1',
 				'menu_id'        => 'primary-menu',
 				'items_wrap'     => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>',
+				"menu_class"	=> 'lg:flex hidden w-full justify-between text-dark capitalize text-[16px] font-bold',
+				"container_class" => "w-full flex",
 			)
 		);
 		?>
 	</nav><!-- #site-navigation -->
-
+	</div>
 </header><!-- #masthead -->
